@@ -8,7 +8,6 @@ import java.util.Scanner;
  * @author Mohammad Rahimi Bin Zamri
  */
 
-// main class -> compile all code from Car class and run it here
 public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);

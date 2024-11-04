@@ -25,12 +25,13 @@ class CarUtil {
      */
     private void showMenu() {
         System.out.println("Cars handling");
-        System.out.println("1. Register 5 car");
-        System.out.println("2. Show the fastest car");
-        System.out.println("3. Move car");
-        System.out.println("4. Check cars next service date");
-        System.out.println("5. Compare between two car number");
-        System.out.println("q. Quit");
+        System.out.println("1. Register 5 car.");
+        System.out.println("2. Print cars detail.");
+        System.out.println("3. Show the fastest car.");
+        System.out.println("4. Move car.");
+        System.out.println("5. Check cars next service date.");
+        System.out.println("6. Compare between two car number.");
+        System.out.println("q. Quit.");
     }
 
     /**
@@ -71,16 +72,30 @@ class CarUtil {
      * @return Car object with model, ownerName and yearmade
      */
     private Car registerCar() {
-        System.out.println("Enter name");
+        System.out.print("Enter name: ");
         String ownerName = scan.nextLine();
-        System.out.println("Enter model");
+        System.out.print("Enter model: ");
         String model = scan.nextLine();
-        System.out.println("Enter year made");
+        System.out.print("Enter car's manufacturer: ");
+        String manufacturer = scan.nextLine();
+        System.out.print("Enter car's number: ");
+        String carNumber = scan.nextLine();
+        System.out.print("Enter year made: ");
         int yearMade = Integer.valueOf(scan.nextLine());
+        System.out.print("Enter car's top speed: ");
+        int topSpeed = Integer.valueOf(scan.nextLine());
+        System.out.print("Enter car's current mileage: ");
+        int mileage = Integer.valueOf(scan.nextLine());
         // newline to separate between input
         System.out.println("--------------------------");
 
-        return new Car(model, ownerName, yearMade);
+        return new Car(model, ownerName, yearMade, carNumber, manufacturer, topSpeed, mileage);
+    }
+
+    private void showCarDetails() {
+        for (Car car : carlist) {
+            System.out.println(car.carDetails());
+        }
     }
 
     /**
@@ -195,7 +210,7 @@ class CarUtil {
      * 
      * @see Car's compareCarNumber(Car otherCar) method
      */
-    public void compareTwoCar() {
+    private void compareTwoCar() {
         System.out.println("Enter car one's owner name: ");
         String carOneOwner = scan.nextLine();
 
@@ -250,7 +265,14 @@ class CarUtil {
                     continue;
                 }
                 registerCarInList();
-            } else if (userInput.equals("2")) { // get the fastest cars in the list
+            } else if (userInput.equals("2")) { // print all cars details
+                if (!isFull()) {
+                    continue;
+                } else {
+                    showCarDetails();
+                }
+
+            } else if (userInput.equals("3")) { // get the fastest cars in the list
                 if (!isFull()) {
                     continue;
                 }
@@ -258,29 +280,29 @@ class CarUtil {
                 // create car instace to use 'static' method
                 Car fastCar = Car.checkFastestCar(carlist);
                 System.out.println("\nFastest car details: \n" + fastCar.carDetails());
-            } else if (userInput.equals("3")) { // move car
+            } else if (userInput.equals("4")) { // move car
                 if (!isFull()) {
                     continue;
                 } else {
                     checkFaster();
                     makeCarMove();
                 }
-            } else if (userInput.equals("4")) { // get car next service date
+            } else if (userInput.equals("5")) { // get car next service date
                 if (!isFull()) {
                     continue;
                 } else {
                     checkNextService();
                 }
-            } else if (userInput.equals("5")) { // compare between two car
+            } else if (userInput.equals("6")) { // compare between two car
                 if (!isFull()) {
                     continue;
                 } else {
                     compareTwoCar();
                 }
 
-            } else {
+            } else { // terminate program
                 System.out
-                        .println("Invalid input,\nChoose 1 - 4 for car related menu,\nOr 'q' to terminate program.\n");
+                        .println("Invalid input,\nChoose 1 - 6 for car related menu,\nOr 'q' to terminate program.\n");
             }
 
         }
@@ -288,3 +310,6 @@ class CarUtil {
     }
 
 }
+
+// TODO: terminate program seem to print 'Invalid input...' message, fix this.
+// TODO: change menu with suitable option text

@@ -218,9 +218,10 @@ public class Car {
      */
     public void comparecarNumber(Car othercar) {
         if (getCarNumber().equals(othercar.getCarNumber())) {
-            System.out.println("Same car number");
+            System.out.println(getOwnerName() + " have same car's number with " + othercar.getOwnerName()
+                    + ", which is: " + getCarNumber());
         } else {
-            System.out.println("Not same car number");
+            System.out.println("Both car have different car number!");
         }
     }
 
