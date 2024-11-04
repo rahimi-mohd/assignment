@@ -198,6 +198,7 @@ public class Car {
         sb.append("Car Manufacturer: ").append(getCarManufacturer()).append("\n");
         sb.append("Car Number: ").append(getCarNumber()).append("\n");
         sb.append("Year Made: ").append(getYearMade()).append("\n");
+        sb.append("Top Speed: ").append(getCarTopSpeed()).append("\n");
 
         if (this.localCar()) {
             sb.append("Local Car.").append("\n");

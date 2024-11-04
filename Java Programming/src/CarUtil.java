@@ -25,29 +25,13 @@ class CarUtil {
      */
     private void showMenu() {
         System.out.println("Cars handling");
-        System.out.println("1. Register 5 car.");
-        System.out.println("2. Print cars detail.");
-        System.out.println("3. Show the fastest car.");
-        System.out.println("4. Move car.");
-        System.out.println("5. Check cars next service date.");
-        System.out.println("6. Compare between two car number.");
+        System.out.println("1. Register Cars.");
+        System.out.println("2. Show Car Details.");
+        System.out.println("3. Fastest Car.");
+        System.out.println("4. Move Car.");
+        System.out.println("5. Check Mileage for Next Service.");
+        System.out.println("6. Compare Car's Number.");
         System.out.println("q. Quit.");
-    }
-
-    /**
-     * Helper method to check for terminating program (mainloop)
-     * 
-     * @param input
-     * @return boolean value true or false depend on input
-     */
-    private boolean stopRun(String input) {
-        if (input.equals("q") || (input.equals("Q"))) {
-            System.out.println("Terminating program...");
-            return false;
-        } else {
-            System.out.println("\n");
-            return true;
-        }
     }
 
     /**
@@ -257,22 +241,29 @@ class CarUtil {
         while (run) {
             showMenu();
             String userInput = scan.nextLine();
+
             // handle quit program
-            run = stopRun(userInput);
+            if (userInput.equals("q") || userInput.equals("Q")) {
+                System.out.println("Terminating program...");
+                break;
+            }
+
             if (userInput.equals("1")) { // register 5 cars
+                System.out.println("Register Cars.");
                 if (isFull()) {
                     System.out.println("5 cars already registered!");
                     continue;
                 }
                 registerCarInList();
             } else if (userInput.equals("2")) { // print all cars details
+                System.out.println("Show Car Details.");
                 if (!isFull()) {
                     continue;
                 } else {
                     showCarDetails();
                 }
-
             } else if (userInput.equals("3")) { // get the fastest cars in the list
+                System.out.println("Fastest Car.");
                 if (!isFull()) {
                     continue;
                 }
@@ -281,6 +272,7 @@ class CarUtil {
                 Car fastCar = Car.checkFastestCar(carlist);
                 System.out.println("\nFastest car details: \n" + fastCar.carDetails());
             } else if (userInput.equals("4")) { // move car
+                System.out.println("Move Car.");
                 if (!isFull()) {
                     continue;
                 } else {
@@ -288,12 +280,14 @@ class CarUtil {
                     makeCarMove();
                 }
             } else if (userInput.equals("5")) { // get car next service date
+                System.out.println("Check Mileage for Next Service.");
                 if (!isFull()) {
                     continue;
                 } else {
                     checkNextService();
                 }
             } else if (userInput.equals("6")) { // compare between two car
+                System.out.println("Compare Car's Number.");
                 if (!isFull()) {
                     continue;
                 } else {
@@ -304,12 +298,6 @@ class CarUtil {
                 System.out
                         .println("Invalid input,\nChoose 1 - 6 for car related menu,\nOr 'q' to terminate program.\n");
             }
-
         }
-
     }
-
 }
-
-// TODO: terminate program seem to print 'Invalid input...' message, fix this.
-// TODO: change menu with suitable option text
